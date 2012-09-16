@@ -205,7 +205,7 @@ input[name="name"] {
 }
 
 input[name="time"] {
-    width: 50px;
+    width: 60px;
 }
 
 #vote-form {
