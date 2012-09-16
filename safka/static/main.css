@@ -1,0 +1,377 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+a {
+    color: #00e;
+}
+
+a:visited {
+    color: #551a8b;
+}
+
+a:hover {
+    color: #06e;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+@font-face {
+font-family: vote-font;
+    src: url('Teen.ttf');
+}
+
+body {
+    background-image:url('body-background.png');
+}
+
+.vote-div {
+    padding: 10px;
+    margin: 10px 10px 0 10px;
+
+    background-image:url('div-background.png');
+    
+    border:1px solid;
+    
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    
+    -moz-box-shadow: 3px 3px 3px #000;
+    -webkit-box-shadow: 3px 3px 3px #000;
+    box-shadow: 3px 3px 5px #000;
+    
+    /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#eeeeee));
+    
+    /* Safari 5.1, Chrome 10+ */
+    background: -webkit-linear-gradient(top, #eeeeee, #ffffff);
+    
+    /* Firefox 3.6+ */
+    background: -moz-linear-gradient(top, #eeeeee, #ffffff);
+    
+    /* IE 10 */
+    background: -ms-linear-gradient(top, #eeeeee, #ffffff);
+    
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #eeeeee, #ffffff);
+}
+
+p, li, label, h2, h3, input, select {
+    font-size: 19px;
+    letter-spacing:2px;
+    color: #222222;
+    font-weight: bold;
+    font-family: vote-font;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+h2, h3 {
+    font-family: vote-font;
+    text-align: center;
+    text-shadow: 1px 1px #555555;
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+}
+
+button {
+    text-align: center;
+}
+
+#dishes-button-wrapper {
+}
+
+.safka-button {
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #555555;
+    
+    background: #ff9933;
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    
+    -moz-box-shadow: 2px 2px 2px #555;
+    -webkit-box-shadow: 2px 2px 2px #555;
+    box-shadow: 2px 2px 2px #555;
+}
+
+.safka-button:active {
+        -moz-box-shadow: 1px 1px 1px #555;
+    -webkit-box-shadow: 1px 1px 1px #555;
+    box-shadow: 1px 1px 1px #555;
+}
+
+#dishes-button {
+    float: right;
+    background-image:url('cup.png');
+}
+
+#submit-button {
+    margin: auto;
+    background-image:url('check.png');
+}
+
+#refresh-button {
+    float: right;
+    background-image:url('refresh.png');
+}
+
+input, button, select, select option {
+    font-family: vote-font;
+    font-size: 19px;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+
+    height: 1.5em;
+    
+    margin: 12px 0 0 0;
+    padding: 0 0 3px 4px;
+
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+} 
+
+select, select option {
+    height: 1.8em;
+    padding: 0 0 3px 0px;
+}
+
+label {
+    display: block;
+    margin: 0px 30px 20px 0;
+}
+
+input[name="name"] {
+    width: 150px;
+}
+
+input[name="time"] {
+    width: 50px;
+}
+
+#vote-form {
+    float: left;
+}
+
+#vote-form-wrapper {
+}
+
+#label-wrapper {
+    margin-top: 15px;
+    float: left;
+}
+
+#input-wrapper {
+    float: left;
+    margin: 0;
+}
+
+#namelist {
+    float:left;
+}
+
+#votelist {
+    margin: 0 0 0 20px;
+    float:left;
+}
+
+#votelist li {
+    color: #555555;
+}
+
+#spinner {
+    height: 15px;
+    margin: 10px;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/* Prevent callout */
+
+.nocallout {
+    -webkit-touch-callout: none;
+}
+
+.pressed {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* A hack for HTML5 contenteditable attribute on mobile */
+
+textarea[contenteditable] {
+    -webkit-appearance: none;
+}
+
+/* A workaround for S60 3.x and 5.0 devices which do not animated gif images if
+   they have been set as display: none */
+
+.gifhidden {
+    position: absolute;
+    left: -100%;
+}
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0;
+    direction: ltr;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+    text-indent: -999em;
+}
+
+.ir br {
+    display: none;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/**
+ * Clearfix helper
+ * Used to contain floats: h5bp.com/q
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 800px) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 144dpi) {
+    /* Style adjustments for viewports that meet the condition */
+}

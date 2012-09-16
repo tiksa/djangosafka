@@ -7,9 +7,9 @@ class Restaurant(models.Model):
         return self.name
 
 class Vote(models.Model):
-    voter = models.CharField(max_length=20, unique=True)
-    time = models.DateTimeField()
+    voter = models.CharField(max_length=20)
+    time = models.CharField(max_length=5)
     restaurant = models.ForeignKey(Restaurant)
     
     def __unicode__(self):
-        return self.voter + ": klo " + str(self.time) + " @" + str(self.restaurant)
+        return self.voter + ": klo " + self.time + " @" + str(self.restaurant)

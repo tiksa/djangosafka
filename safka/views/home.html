@@ -1,1 +1,130 @@
-jeejee
+<!doctype html>
+<html>
+    <head>
+    <title>Safkavaalit</title>
+    <link rel="stylesheet" type="text/css" href="../static/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../static/main.css">
+    <script type="text/javascript" src="../static/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../static/spin.js"></script>
+    </head>
+    <body>
+        <div class="vote-div" id="header">
+            <h2>SAFKAVAALIT</h2>
+        </div>
+        <div class="vote-div">
+            <h3>Missä lounastat tänään?</h3>
+            <hr>
+            <div id="vote-form-wrapper" class="clearfix">
+                <form method="post" id="vote-form">
+                    {% csrf_token %}
+                    <div id="label-wrapper">
+                        <label for="restaurant">Rafla</label>
+                        <label for="voter">Nimesi</label>
+                        <label for="time">Klo</label>
+                    </div>
+                    <div id="input-wrapper">
+                        <select name="restaurant">
+                            {% for restaurant in restaurants %}
+                                <option>{{ restaurant.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <br>
+                        <input type="text" name="voter" id="voter"/>
+                        <br>
+                        <input type="time" name="time" id="time" value="11:30"/>
+                    </div>
+                </form>
+                <div class="safka-button" id="dishes-button"></div>
+            </div>
+            <div class="safka-button" id="submit-button"></div>
+        </div>
+        <div class="vote-div">
+            <h3>Muut safkaajat</h3>
+            <hr>
+            <div class="clearfix">
+                <ul id="namelist">
+                </ul>
+                <ul id="votelist">
+                </ul>
+                <div class="safka-button" id="refresh-button"></div>
+            </div>
+            <div id="spinner"></div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var fetchVotes = function () {
+                        spinner.spin($('#spinner')[0]);
+                        $.ajax({
+                        type: 'GET',
+                        url: 'fetchvotes',
+                        success: function(data){
+                            console.log("Votes fetched successfully");
+                            var votes = data;
+                            
+                            var namesHtml = "";
+                            var votesHtml = "";
+                            if (votes.length === 0) {
+                                namesHtml = "<p>Muista ei vielä hajua.</p>";
+                            } else {
+                                for (var i = 0; i < votes.length; i++) {
+                                    namesHtml += "<li>" + votes[i].voter + "</li>";
+                                }
+                                for (var i = 0; i < votes.length; i++) {
+                                    votesHtml += "<li>" + votes[i].restaurant + " klo " + votes[i].time + "</li>";
+                                }
+                            }
+                            spinner.stop();
+                            $('#namelist').html(namesHtml);
+                            $('#votelist').html(votesHtml);
+                        },
+                        error: function(data){
+                            spinner.stop();
+                            console.log("Vote fetching failed");
+                        }
+                    });
+                }
+                
+                $('#refresh-button').click(function(e) {
+                    fetchVotes();
+                });
+                
+                $('#dishes-button').click(function (e) {
+                    window.location = 'http://ruokalistat.net';
+                });
+                
+                $('#submit-button').click(function () {
+                    if ($('input[name="name"]').val() === "") {
+                        return;
+                    }
+                    spinner.spin($('#spinner')[0]);
+                    $.ajax({
+                        type: 'POST',
+                        url: "add",
+                        data: $('#vote-form').serialize(),
+                        timeout: 5000,
+                        success: function(data) {
+                            fetchVotes();
+                        },
+                        error: function(request, status, err) {
+                            spinner.stop();
+                            alert("Sorry, ei onnistunut :(");
+                        }
+                    });
+                });
+                
+                var spinner = new Spinner({
+                    lines: 11,
+                    length: 5,
+                    width: 3,
+                    radius: 7,
+                    color: '#000',
+                    speed: 1.3,
+                    trail: 100,
+                    shadow: false
+                });
+                
+                fetchVotes();
+            });
+        </script>
+    </body>
+</html>

@@ -6,6 +6,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'safka.views.home'),
+    url(r'^fetchvotes$', 'safka.views.fetchvotes'),
+    url(r'^add$', 'safka.views.add'),
     # url(r'^djangosafka/', include('djangosafka.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
